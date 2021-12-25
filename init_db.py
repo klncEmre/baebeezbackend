@@ -47,6 +47,10 @@ if __name__=="__main__":
         cursor.execute(statement)
         
         statement = """CREATE TABLE IF NOT EXISTS ListOfMatches(
-                MatchId TEXT PRIMARY KEY NOT NULL
+                MatchId INT PRIMARY KEY NOT NULL,
+                UserId TEXT  NOT NULL,
+                DislikedUser TEXT  NOT NULL,
+                CONSTRAINT fk_userid FOREIGN KEY (UserId) REFERENCES Users(UserId) ON DELETE CASCADE,
+                CONSTRAINT fk_dislikeduser FOREIGN KEY (DislikedUser) REFERENCES Users(UserId) ON DELETE CASCADE
             )"""
         cursor.execute(statement)
